@@ -1,0 +1,15 @@
+version: "0.2"
+language: en,es
+dictionaryDefinitions: []
+dictionaries: []
+words:
+  - cupertino
+  - Otalora
+  - riverpod
+  - Sebas
+  - supabase
+  - uuid
+ignoreWords: []
+import: []
+enabledFileTypes:
+  json: false
