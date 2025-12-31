@@ -16,4 +16,10 @@ For help getting started with Flutter development, view the
 samples, guidance on mobile development, and a full API reference.
 
 To Update splash image
+
 `dart run flutter_native_splash:create`
+
+To Update deploy
+
+`flutter build web --base-href="/app_track_ota_labs/"`
+`npx gh-pages -d build/web`
