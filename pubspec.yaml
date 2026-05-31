@@ -16,6 +16,8 @@ dependencies:
   package_info_plus: ^9.0.0
   provider: ^6.1.5+1
   supabase_flutter: ^2.10.3
+  google_fonts: ^6.2.1
+  flutter_animate: ^4.5.0
 
 dev_dependencies:
   flutter_lints: ^6.0.0
@@ -29,14 +31,14 @@ flutter:
     - assets/apps/
 
 flutter_native_splash:
-  color: "#1e293b"
+  color: "#0b1623"
   image: assets/splash.png
   branding: assets/branding.png
   image_dark: assets/splash.png
   branding_dark: assets/branding.png
   android_12:
     image: assets/splash.png
-    color: "#1e293b"
+    color: "#0b1623"
     branding: assets/branding.png
     branding_dark: assets/branding.png
   ios: true

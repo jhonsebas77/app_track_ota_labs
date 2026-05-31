@@ -1,0 +1,96 @@
+// lib/widgets/schematic_ring.dart
+import 'dart:math' as math;
+
+import 'package:flutter/material.dart';
+
+import '../../../theme/blueprint_colors.dart';
+
+/// Slowly rotating dashed circle — replicates the CSS `animate-spin 20s` ring.
+class SchematicRing extends StatefulWidget {
+
+  const SchematicRing({required this.child, super.key, this.size = 160});
+  final Widget child;
+  final double size;
+
+  @override
+  State<SchematicRing> createState() => _SchematicRingState();
+}
+
+class _SchematicRingState extends State<SchematicRing>
+    with SingleTickerProviderStateMixin {
+  late AnimationController _ctrl;
+
+  @override
+  void initState() {
+    super.initState();
+    _ctrl = AnimationController(
+      vsync: this,
+      duration: const Duration(seconds: 20),
+    )..repeat();
+  }
+
+  @override
+  void dispose() {
+    _ctrl.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    double outerSize = widget.size + 32;
+    return SizedBox(
+      width: outerSize,
+      height: outerSize,
+      child: Stack(
+        alignment: Alignment.center,
+        children: <Widget>[
+          // Rotating dashed ring
+          AnimatedBuilder(
+            animation: _ctrl,
+            builder: (_, __) => Transform.rotate(
+                angle: _ctrl.value * 2 * math.pi,
+                child: CustomPaint(
+                  size: Size(outerSize, outerSize),
+                  painter: _DashedCirclePainter(),
+                ),
+              ),
+          ),
+          // Static inner content
+          widget.child,
+        ],
+      ),
+    );
+  }
+}
+
+class _DashedCirclePainter extends CustomPainter {
+  @override
+  void paint(Canvas canvas, Size size) {
+    Paint paint = Paint()
+      ..color = BpColors.outline.withAlpha(70)
+      ..style = PaintingStyle.stroke
+      ..strokeWidth = 1;
+
+    Offset center = Offset(size.width / 2, size.height / 2);
+    double radius = (size.width / 2) - 2;
+
+    const int dashCount = 36;
+    const double dashAngle = (2 * math.pi) / dashCount;
+    const double gapRatio = 0.4;
+
+    for (int i = 0; i < dashCount; i++) {
+      double startAngle = i * dashAngle;
+      const double sweepAngle = dashAngle * (1 - gapRatio);
+      canvas.drawArc(
+        Rect.fromCircle(center: center, radius: radius),
+        startAngle,
+        sweepAngle,
+        false,
+        paint,
+      );
+    }
+  }
+
+  @override
+  bool shouldRepaint(_DashedCirclePainter old) => false;
+}

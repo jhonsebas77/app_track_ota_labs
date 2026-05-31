@@ -28,39 +28,60 @@ class _VersionWidgetState extends State<VersionWidget> {
   }
 
   @override
-  Widget build(BuildContext context) => Padding(
-    padding: const EdgeInsets.all(8),
-    child: Container(
-      width: 270,
-      padding: const EdgeInsets.only(left: 12, top: 8, bottom: 8, right: 12),
-      decoration: BoxDecoration(
-        color: Colors.black12,
-        borderRadius: BorderRadius.circular(16),
-      ),
+  Widget build(BuildContext context) => DecoratedBox(
+    decoration: BoxDecoration(
+      color: BpColors.surfaceContainerLow,
+      border: Border.all(color: BpColors.outline.withAlpha(50), width: 1),
+    ),
+    child: Padding(
+      padding: const EdgeInsets.all(16),
       child: Row(
         children: <Widget>[
-          Image.asset(
-            'assets/logo_ota.png',
-            height: 50,
-            width: 50,
-            fit: BoxFit.fill,
+          Container(
+            width: 48,
+            height: 48,
+            decoration: BoxDecoration(
+              color: BpColors.background,
+              border: Border.all(
+                color: BpColors.outline.withAlpha(60),
+                width: 1,
+              ),
+            ),
+            child: ColorFiltered(
+              colorFilter: const ColorFilter.mode(
+                Colors.white,
+                BlendMode.modulate,
+              ),
+              child: Image.asset(
+                'assets/logo_ota.png',
+                height: 48,
+                width: 48,
+                fit: BoxFit.contain,
+              ),
+            ),
           ),
           const SizedBox(width: 16),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              SelectableText(
-                _appName,
-                textAlign: TextAlign.center,
-                style: const TextStyle(
-                  fontWeight: FontWeight.bold,
-                  color: Colors.white,
+              Text(
+                _appName.toUpperCase(),
+                style: GoogleFonts.jetBrainsMono(
+                  fontWeight: FontWeight.w700,
+                  fontSize: 13,
+                  color: BpColors.textPrimary,
+                  letterSpacing: 1,
                 ),
               ),
-              SelectableText(
-                'By Ota_Labs $_version($_buildNumber)',
-                textAlign: TextAlign.center,
-                style: const TextStyle(fontSize: 12, color: Colors.white),
+              const SizedBox(height: 4),
+              Text(
+                'OTA_LABS  //  v$_version  ($_buildNumber)',
+                style: GoogleFonts.jetBrainsMono(
+                  fontSize: 9,
+                  color: BpColors.primaryContainer,
+                  letterSpacing: 0.5,
+                  fontWeight: FontWeight.w500,
+                ),
               ),
             ],
           ),
