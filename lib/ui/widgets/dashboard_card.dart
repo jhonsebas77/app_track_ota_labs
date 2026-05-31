@@ -5,52 +5,77 @@ class DashboardCard extends StatelessWidget {
 
   final AppModel app;
 
+  Color _statusColor() {
+    switch (app.status) {
+      case 'Live':
+        return BpColors.success;
+      case 'Draft':
+        return BpColors.textDim;
+      default:
+        return BpColors.warning;
+    }
+  }
+
   @override
   Widget build(BuildContext context) => DecoratedBox(
     decoration: BoxDecoration(
-      color: const Color(0xFF1E293B),
-      borderRadius: BorderRadius.circular(16),
+      color: BpColors.surfaceContainerLow,
+      border: Border.all(color: BpColors.outline.withAlpha(50), width: 1),
     ),
     child: ListTile(
-      contentPadding: const EdgeInsets.all(16),
-      leading: Image.asset(
-        'assets/apps/${app.iconApp}.png',
-        height: 50,
-        width: 50,
-        fit: BoxFit.fill,
+      contentPadding: const EdgeInsets.all(14),
+      leading: Container(
+        width: 48,
+        height: 48,
+        decoration: BoxDecoration(
+          color: BpColors.background,
+          border: Border.all(
+            color: BpColors.outline.withAlpha(60),
+            width: 1,
+          ),
+        ),
+        child: Image.asset(
+          'assets/apps/${app.iconApp}.png',
+          height: 48,
+          width: 48,
+          fit: BoxFit.contain,
+        ),
       ),
       title: Text(
         app.name,
-        style: const TextStyle(
-          fontWeight: FontWeight.bold,
-          fontSize: 16,
-          color: Colors.white,
+        style: GoogleFonts.jetBrainsMono(
+          fontWeight: FontWeight.w700,
+          fontSize: 13,
+          color: BpColors.textPrimary,
+          letterSpacing: 0.5,
         ),
       ),
       subtitle: Text(
         app.description,
-        style: TextStyle(color: Colors.grey[400], fontSize: 14),
+        style: GoogleFonts.jetBrainsMono(
+          color: BpColors.textDim,
+          fontSize: 10,
+          letterSpacing: 0.3,
+        ),
         maxLines: 1,
         overflow: TextOverflow.ellipsis,
       ),
       trailing: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
         decoration: BoxDecoration(
-          color: app.status == 'Live'
-              ? Colors.green.withOpacity(0.2)
-              : (app.status == 'Draft'
-                    ? Colors.grey.withOpacity(0.2)
-                    : Colors.amber.withOpacity(0.2)),
-          borderRadius: BorderRadius.circular(20),
+          color: _statusColor().withAlpha(25),
+          border: Border.all(
+            color: _statusColor().withAlpha(100),
+            width: 1,
+          ),
         ),
         child: Text(
-          app.status,
-          style: TextStyle(
-            color: app.status == 'Live'
-                ? Colors.green
-                : (app.status == 'Draft' ? Colors.grey : Colors.amber),
-            fontSize: 12,
-            fontWeight: FontWeight.bold,
+          app.status.toUpperCase(),
+          style: GoogleFonts.jetBrainsMono(
+            color: _statusColor(),
+            fontSize: 9,
+            fontWeight: FontWeight.w700,
+            letterSpacing: 1,
           ),
         ),
       ),

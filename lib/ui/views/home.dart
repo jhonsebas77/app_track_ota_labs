@@ -13,15 +13,30 @@ class _DashboardScreenState extends State<DashboardScreen> {
     length: 2,
     child: SafeArea(
       child: Scaffold(
+        backgroundColor: BpColors.background,
         appBar: AppBar(
-          title: const Text(
-            'App Track',
-            style: TextStyle(fontWeight: FontWeight.bold),
+          backgroundColor: BpColors.surfaceContainerLow,
+          elevation: 0,
+          shape: const Border(
+            bottom: BorderSide(color: BpColors.outlineVariant, width: 1),
+          ),
+          title: Text(
+            'APP_TRACK',
+            style: GoogleFonts.jetBrainsMono(
+              color: BpColors.textPrimary,
+              fontSize: 15,
+              fontWeight: FontWeight.w700,
+              letterSpacing: 3,
+            ),
           ),
           centerTitle: true,
           actions: <Widget>[
             IconButton(
-              icon: const Icon(Icons.logout),
+              icon: const Icon(
+                Icons.logout,
+                color: BpColors.textDim,
+                size: 18,
+              ),
               onPressed: () {
                 Provider.of<AppProvider>(
                   context,
@@ -29,45 +44,44 @@ class _DashboardScreenState extends State<DashboardScreen> {
                 ).logout(context);
               },
             ),
-            const SizedBox(width: 16),
+            const SizedBox(width: 8),
           ],
-          backgroundColor: Colors.transparent,
-          elevation: 0,
         ),
-        backgroundColor: Theme.of(context).colorScheme.primary,
         body: const TabBarView(
           children: <Widget>[DashboardView(), SettingsView()],
         ),
-        bottomNavigationBar: Padding(
-          padding: const EdgeInsets.only(left: 16, right: 16, bottom: 16),
-          child: SizedBox(
-            height: 60,
-            child: DecoratedBox(
-              decoration: BoxDecoration(
-                color: Colors.black12,
-                borderRadius: BorderRadius.circular(50),
+        bottomNavigationBar: DecoratedBox(
+          decoration: const BoxDecoration(
+            color: BpColors.surfaceContainerLow,
+            border: Border(
+              top: BorderSide(color: BpColors.outlineVariant, width: 1),
+            ),
+          ),
+          child: Padding(
+            padding: const EdgeInsets.symmetric(
+              horizontal: 16,
+              vertical: 4,
+            ),
+            child: TabBar(
+              indicatorColor: BpColors.primaryContainer,
+              indicatorWeight: 2,
+              labelColor: BpColors.primaryContainer,
+              unselectedLabelColor: BpColors.textDim,
+              dividerColor: Colors.transparent,
+              labelStyle: GoogleFonts.jetBrainsMono(
+                fontSize: 10,
+                fontWeight: FontWeight.w600,
+                letterSpacing: 1.5,
               ),
-              child: Padding(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 12,
-                  vertical: 4,
-                ),
-                child: TabBar(
-                  indicatorColor: Colors.transparent,
-                  labelColor: Colors.white,
-                  dividerColor: Colors.transparent,
-                  labelStyle: TextStyle(
-                    color: Theme.of(context).colorScheme.onPrimary,
-                    fontSize: 16,
-                    fontWeight: FontWeight.w600,
-                    letterSpacing: 0.4,
-                  ),
-                  tabs: const <Widget>[
-                    Tab(icon: Icon(Icons.home_rounded), text: 'Inicio'),
-                    Tab(icon: Icon(Icons.settings_rounded), text: 'Ajustes'),
-                  ],
-                ),
+              unselectedLabelStyle: GoogleFonts.jetBrainsMono(
+                fontSize: 10,
+                fontWeight: FontWeight.w400,
+                letterSpacing: 1,
               ),
+              tabs: const <Widget>[
+                Tab(icon: Icon(Icons.home_rounded), text: 'INICIO'),
+                Tab(icon: Icon(Icons.settings_rounded), text: 'AJUSTES'),
+              ],
             ),
           ),
         ),
