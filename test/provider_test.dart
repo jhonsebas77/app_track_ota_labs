@@ -30,7 +30,7 @@ void main() {
         name: 'Test App',
         description: 'Test',
         bundleId: 'com.test',
-        icon: Icons.abc,
+        icon: '',
         color: Colors.red,
         platform: <String>['iOS'],
         version: '1.0.0',

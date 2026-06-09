@@ -62,22 +62,11 @@ class AppProvider with ChangeNotifier {
 
   List<AppModel> get apps => _apps;
 
-  Future<void> login(
-    String email,
-    String password,
-    BuildContext context,
-  ) async {
-    try {
-      await Supabase.instance.client.auth.signInWithPassword(
-        email: email,
-        password: password,
-      );
-      if (context.mounted) {
-        showSuccessSnackBar(context, 'Login successfully');
-      }
-    } catch (e) {
-      rethrow;
-    }
+  Future<void> login(String email, String password) async {
+    await Supabase.instance.client.auth.signInWithPassword(
+      email: email,
+      password: password,
+    );
   }
 
   Future<void> logout(BuildContext context) async {

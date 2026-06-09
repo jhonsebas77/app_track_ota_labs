@@ -17,7 +17,9 @@ class AppModel {
   factory AppModel.fromMap(Map<String, dynamic> map) {
     dynamic platformsRaw = map['platform'];
     List<String> platformsList =
-        (platformsRaw as List?)?.map((item) => item.toString()).toList() ??
+        (platformsRaw as List<dynamic>?)
+            ?.map((dynamic item) => item.toString())
+            .toList() ??
         <String>[];
     int colorValue = _parseColor(map['color_value']);
     return AppModel(

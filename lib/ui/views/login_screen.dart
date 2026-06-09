@@ -36,15 +36,15 @@ class _LoginScreenState extends State<LoginScreen> {
       _errorMsg = null;
     });
 
+    AppProvider provider = Provider.of<AppProvider>(context, listen: false);
+
     await HapticFeedback.mediumImpact();
 
     try {
-      AppProvider provider = Provider.of<AppProvider>(context, listen: false);
-      await provider.login(
-        _emailController.text,
-        _passwordController.text,
-        context,
-      );
+      await provider.login(_emailController.text, _passwordController.text);
+      if (mounted) {
+        showSuccessSnackBar(context, 'Login successfully');
+      }
     } on AuthException catch (e) {
       if (mounted) {
         setState(() => _errorMsg = e.message);
@@ -463,7 +463,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           ),
                           const SizedBox(height: 4),
                           Text(
-                            '©2024 OTA_SYSTEM. ALL RIGHTS RESERVED.\nSECURE ACCESS SCHEMA REQUIRED.',
+                            '''©2024 OTA_SYSTEM. ALL RIGHTS RESERVED.\nSECURE ACCESS SCHEMA REQUIRED.''',
                             style: _label(size: 8, spacing: 0.3),
                             maxLines: 2,
                           ),
