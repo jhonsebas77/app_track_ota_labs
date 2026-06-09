@@ -19,7 +19,17 @@ To Update splash image
 
 `dart run flutter_native_splash:create`
 
-To Update deploy
+## Deploy
 
-`flutter build web --base-href="/app_track_ota_labs/"`
-`npx gh-pages -d build/web`
+El despliegue a GitHub Pages es **automático** via GitHub Actions en cada push a `main`.
+
+También se puede disparar manualmente desde la pestaña **Actions** del repositorio usando "Run workflow".
+
+### Deploy manual (fallback)
+
+```bash
+flutter build web --base-href="/app_track_ota_labs/"
+npx gh-pages -d build/web
+```
+
+URL: https://jhonsebas77.github.io/app_track_ota_labs/
