@@ -200,50 +200,62 @@ class _AddApplicationScreenState extends State<AddApplicationScreen> {
         Positioned(
           top: -4,
           left: -4,
-          child: Container(width: 8, height: 8,
-              decoration: const BoxDecoration(
-                border: Border(
-                  top: BorderSide(color: BpColors.primaryContainer, width: 1),
-                  left: BorderSide(color: BpColors.primaryContainer, width: 1),
-                ),
-                color: BpColors.background,
-              )),
+          child: Container(
+            width: 8,
+            height: 8,
+            decoration: const BoxDecoration(
+              border: Border(
+                top: BorderSide(color: BpColors.primaryContainer, width: 1),
+                left: BorderSide(color: BpColors.primaryContainer, width: 1),
+              ),
+              color: BpColors.background,
+            ),
+          ),
         ),
         Positioned(
           top: -4,
           right: -4,
-          child: Container(width: 8, height: 8,
-              decoration: const BoxDecoration(
-                border: Border(
-                  top: BorderSide(color: BpColors.primaryContainer, width: 1),
-                  right: BorderSide(color: BpColors.primaryContainer, width: 1),
-                ),
-                color: BpColors.background,
-              )),
+          child: Container(
+            width: 8,
+            height: 8,
+            decoration: const BoxDecoration(
+              border: Border(
+                top: BorderSide(color: BpColors.primaryContainer, width: 1),
+                right: BorderSide(color: BpColors.primaryContainer, width: 1),
+              ),
+              color: BpColors.background,
+            ),
+          ),
         ),
         Positioned(
           bottom: -4,
           left: -4,
-          child: Container(width: 8, height: 8,
-              decoration: const BoxDecoration(
-                border: Border(
-                  bottom: BorderSide(color: BpColors.primaryContainer, width: 1),
-                  left: BorderSide(color: BpColors.primaryContainer, width: 1),
-                ),
-                color: BpColors.background,
-              )),
+          child: Container(
+            width: 8,
+            height: 8,
+            decoration: const BoxDecoration(
+              border: Border(
+                bottom: BorderSide(color: BpColors.primaryContainer, width: 1),
+                left: BorderSide(color: BpColors.primaryContainer, width: 1),
+              ),
+              color: BpColors.background,
+            ),
+          ),
         ),
         Positioned(
           bottom: -4,
           right: -4,
-          child: Container(width: 8, height: 8,
-              decoration: const BoxDecoration(
-                border: Border(
-                  bottom: BorderSide(color: BpColors.primaryContainer, width: 1),
-                  right: BorderSide(color: BpColors.primaryContainer, width: 1),
-                ),
-                color: BpColors.background,
-              )),
+          child: Container(
+            width: 8,
+            height: 8,
+            decoration: const BoxDecoration(
+              border: Border(
+                bottom: BorderSide(color: BpColors.primaryContainer, width: 1),
+                right: BorderSide(color: BpColors.primaryContainer, width: 1),
+              ),
+              color: BpColors.background,
+            ),
+          ),
         ),
       ],
     ),
@@ -330,9 +342,7 @@ class _AddApplicationScreenState extends State<AddApplicationScreen> {
         foregroundColor: BpColors.onPrimaryFixed,
         elevation: 0,
         padding: const EdgeInsets.symmetric(vertical: 20),
-        shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.zero,
-        ),
+        shape: const RoundedRectangleBorder(borderRadius: BorderRadius.zero),
         side: const BorderSide(color: BpColors.primaryContainer, width: 1),
       ),
       child: Row(

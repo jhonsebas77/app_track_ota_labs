@@ -6,7 +6,6 @@ import '../../../theme/blueprint_colors.dart';
 /// Renders four angular corner brackets as a decorative overlay,
 /// exactly as in the HTML `absolute` positioned divs.
 class CornerBrackets extends StatelessWidget {
-
   const CornerBrackets({
     super.key,
     this.size = 24,
@@ -21,43 +20,58 @@ class CornerBrackets extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Stack(
-      children: <Widget>[
-        // Top-left
-        Positioned(
-          top: inset,
-          left: inset,
-          child: _Bracket(size: size, color: color.withAlpha(100),
-              strokeWidth: strokeWidth, corners: const <_Corner>{_Corner.topLeft}),
+    children: <Widget>[
+      // Top-left
+      Positioned(
+        top: inset,
+        left: inset,
+        child: _Bracket(
+          size: size,
+          color: color.withAlpha(100),
+          strokeWidth: strokeWidth,
+          corners: const <_Corner>{_Corner.topLeft},
         ),
-        // Top-right
-        Positioned(
-          top: inset,
-          right: inset,
-          child: _Bracket(size: size, color: color.withAlpha(100),
-              strokeWidth: strokeWidth, corners: const <_Corner>{_Corner.topRight}),
+      ),
+      // Top-right
+      Positioned(
+        top: inset,
+        right: inset,
+        child: _Bracket(
+          size: size,
+          color: color.withAlpha(100),
+          strokeWidth: strokeWidth,
+          corners: const <_Corner>{_Corner.topRight},
         ),
-        // Bottom-left
-        Positioned(
-          bottom: inset,
-          left: inset,
-          child: _Bracket(size: size, color: color.withAlpha(100),
-              strokeWidth: strokeWidth, corners: const <_Corner>{_Corner.bottomLeft}),
+      ),
+      // Bottom-left
+      Positioned(
+        bottom: inset,
+        left: inset,
+        child: _Bracket(
+          size: size,
+          color: color.withAlpha(100),
+          strokeWidth: strokeWidth,
+          corners: const <_Corner>{_Corner.bottomLeft},
         ),
-        // Bottom-right
-        Positioned(
-          bottom: inset,
-          right: inset,
-          child: _Bracket(size: size, color: color.withAlpha(100),
-              strokeWidth: strokeWidth, corners: const <_Corner>{_Corner.bottomRight}),
+      ),
+      // Bottom-right
+      Positioned(
+        bottom: inset,
+        right: inset,
+        child: _Bracket(
+          size: size,
+          color: color.withAlpha(100),
+          strokeWidth: strokeWidth,
+          corners: const <_Corner>{_Corner.bottomRight},
         ),
-      ],
-    );
+      ),
+    ],
+  );
 }
 
 enum _Corner { topLeft, topRight, bottomLeft, bottomRight }
 
 class _Bracket extends StatelessWidget {
-
   const _Bracket({
     required this.size,
     required this.color,
@@ -71,14 +85,21 @@ class _Bracket extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => CustomPaint(
-      size: Size(size, size),
-      painter: _BracketPainter(color: color, strokeWidth: strokeWidth, corners: corners),
-    );
+    size: Size(size, size),
+    painter: _BracketPainter(
+      color: color,
+      strokeWidth: strokeWidth,
+      corners: corners,
+    ),
+  );
 }
 
 class _BracketPainter extends CustomPainter {
-
-  _BracketPainter({required this.color, required this.strokeWidth, required this.corners});
+  _BracketPainter({
+    required this.color,
+    required this.strokeWidth,
+    required this.corners,
+  });
   final Color color;
   final double strokeWidth;
   final Set<_Corner> corners;
